@@ -1,36 +1,31 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": 2,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Given a sorted integer array without duplicates,\n",
-    "# return the summary of its ranges.\n",
-    "# For example, given [0,1,2,4,5,7], return [\"0->2\",\"4->5\",\"7\"]."
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.6.1"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 2
-}
+# Given a sorted integer array without duplicates,
+# return the summary of its ranges.
+# For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
+
+input_array = [0,1,2,4,5,7]
+# input_array = [1,2,3,6,9,11,12,13,14,19,20]
+start=0
+result = []
+# i=0
+# while i <= len(input_array)-1:
+#     print(i, input_array[i])
+#     i = i+1
+while start < len(input_array):
+    
+    # initial end at start position     
+    end = start
+    # continue to move the end pointer if the gap is 1 with beside number
+    # only continue to move if index end+1 is inside array     
+    while end+1<len(input_array) and ((input_array[end+1] - input_array[end]) == 1):
+        end = end + 1
+    # add range to result after calculate     
+    if end!=start:
+        result.append("{0}-->{1}".format(input_array[start], input_array[end]))
+        print(result)
+    else:
+        result.append("{0}".format(input_array[start]))
+        print(result)
+        
+    # change to next range
+    start = end+1
+print(result)
